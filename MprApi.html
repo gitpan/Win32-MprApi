@@ -93,7 +93,7 @@ The handle returned by this function is used in subsequent calls to configure in
 <PRE>
   if($ret == 0)
   {
-    printf &quot;MprConfigServerConnect() Server connected successfuly, handle is $u\n&quot;, $hMprConfig;</PRE>
+    printf &quot;MprConfigServerConnect() Server connected successfuly, handle is %u\n&quot;, $hMprConfig;</PRE>
 <PRE>
     # Disconnect from the server router
     Win32::MprApi::MprConfigServerDisconnect($hMprConfig);

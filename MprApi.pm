@@ -27,7 +27,12 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw();
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
+
+my $MprConfigServerConnect = new Win32::API ('Mprapi', 'MprConfigServerConnect', ['P', 'P'], 'N') or croak 'can\'t find MprConfigServerConnect() function';
+my $MprConfigServerDisconnect = new Win32::API ('Mprapi', 'MprConfigServerDisconnect', ['N'], 'N') or croak 'can\'t find MprConfigServerDisconnect() function';
+my $MprConfigGetGuidName = new Win32::API ('Mprapi', 'MprConfigGetGuidName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetGuidName() function';
+my $MprConfigGetFriendlyName = new Win32::API ('Mprapi', 'MprConfigGetFriendlyName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetFriendlyName() function';
 
 # Preloaded methods go here.
 
@@ -104,7 +109,7 @@ sub MprConfigServerConnect
 	my $lpwsServerName = shift;
 	my $phMprConfig = shift;
 	
-	my $MprConfigServerConnect = new Win32::API ('Mprapi', 'MprConfigServerConnect', ['P', 'P'], 'N') or croak 'can\'t find MprConfigServerConnect() function';
+#	$MprConfigServerConnect = new Win32::API ('Mprapi', 'MprConfigServerConnect', ['P', 'P'], 'N') or croak 'can\'t find MprConfigServerConnect() function';
 	
 	# prepare buffer
 	$$phMprConfig = pack("L", 0);
@@ -160,7 +165,7 @@ sub MprConfigServerDisconnect
 
 	my $hMprConfig = shift;
 	
-	my $MprConfigServerDisconnect = new Win32::API ('Mprapi', 'MprConfigServerDisconnect', ['N'], 'N') or croak 'can\'t find MprConfigServerDisconnect() function';
+#	$MprConfigServerDisconnect = new Win32::API ('Mprapi', 'MprConfigServerDisconnect', ['N'], 'N') or croak 'can\'t find MprConfigServerDisconnect() function';
 	
 	# function call
 	$MprConfigServerDisconnect->Call($hMprConfig);
@@ -215,7 +220,7 @@ sub MprConfigGetGuidName
 	my $pszBuffer = shift;
 	my $dwBufferSize = shift || 256;
 	
-	my $MprConfigGetGuidName = new Win32::API ('Mprapi', 'MprConfigGetGuidName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetGuidName() function';
+#	$MprConfigGetGuidName = new Win32::API ('Mprapi', 'MprConfigGetGuidName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetGuidName() function';
 	
 	# prepare buffer
 	$$pszBuffer = "\x00" x $dwBufferSize;
@@ -281,7 +286,7 @@ sub MprConfigGetFriendlyName
 	my $pszBuffer = shift;
 	my $dwBufferSize = shift || 256;
 	
-	my $MprConfigGetFriendlyName = new Win32::API ('Mprapi', 'MprConfigGetFriendlyName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetFriendlyName() function';
+#	$MprConfigGetFriendlyName = new Win32::API ('Mprapi', 'MprConfigGetFriendlyName', ['N', 'P', 'P', 'N'], 'N') or croak 'can\'t find MprConfigGetFriendlyName() function';
 	
 	# prepare buffer
 	$$pszBuffer = "\x00" x $dwBufferSize;
